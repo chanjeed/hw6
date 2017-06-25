@@ -16,22 +16,28 @@ class MainPage(webapp2.RequestHandler):
         	<input type='text' name=first_word><br>Second word :<br>
         	<input type='text' name=second_word><br>
         	<input type='submit'></form>""")
-        	merge_word=[]
+        	merge_word=""
+        	first_word=self.request.get("first_word")
+        	second_word=self.request.get("second_word")
+
         	l_first_word=len(first_word)
         	l_second_word=len(second_word)
         	if l_second_word>l_first_word :
         		l=l_first_word
         	else:
         		l=l_second_word
-        	for i in range(l_first_word):
- 	   		merge_word.append(first_word[i])
- 	   		merge_word.append(second_word[i])
+        	for i in range(l):
+ 	   		merge_word+=(first_word[i])
+ 	   		merge_word+=(second_word[i])
+
 
  	   	if l==l_first_word:
- 	   		merge_word+=second_word.splice(i)
+ 	   		merge_word+=second_word[l:]
  	   	else:
- 	   		merge_word+=first_word.splice(i)
- 	   	self.response.write(merge_word)
+ 	   		merge_word+=first_word[l:]
+
+ 	   	if merge_word!="":
+ 	   		self.response.write(merge_word)
  	
 
 
